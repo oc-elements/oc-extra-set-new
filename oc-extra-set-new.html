@@ -1,0 +1,112 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-material/paper-material.html">
+
+<link rel="import" href="../iron-collapse/iron-collapse.html">
+
+<link rel="import" href="../oc-extra-set-input/oc-extra-set-input.html">
+<link rel="import" href="../oc-extra-input/oc-extra-input.html">
+<link rel="import" href="../oc-extras-list/oc-extras-list.html">
+
+<!--
+`oc-extra-set-new`
+Element for capturing a new extra set
+
+@demo demo/index.html 
+-->
+
+<dom-module id="oc-extra-set-new">
+
+  <style>
+    :host {
+      display: block;
+    }
+    paper-material {
+      background-color: #fff;
+      padding: 10px;
+    }
+    .extras-material {
+      margin: 10px 0px 0px 0px;
+    }
+    .new-extra-button {
+      margin: 10px;
+    }
+  </style>
+
+  <template>
+    <paper-material>
+      <oc-extra-set-input id="extraSetInput" on-action="_onCreateExtraSet" action-name="Create Extra Set"></oc-extra-set-input>
+    </paper-material>
+    <paper-material class="extras-material">
+      <iron-collapse opened="[[ _showExtrasList ]]">
+        <iron-collapse opened$="[[ _showNewExtraInput ]]">
+          <oc-extra-input id="extraInput" on-create="_onCreateExtra" on-cancel="_onCancelNewExtra"></oc-extra-input>
+        </iron-collapse>
+        <iron-collapse opened$="[[ !_showNewExtraInput ]]">
+          <paper-button class="new-extra-button" on-tap="_onNewExtraTapped">New Extra</paper-button>
+          <oc-extras-list extras="[[ _extras ]]" on-edit="_onEditExtra" on-delete="_onDeleteExtra"></oc-extras-list>
+        </iron-collapse>
+      </iron-collapse>
+    </paper-material>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'oc-extra-set-new',
+
+      properties: {
+        organisationId: Number,
+        loading: {
+          type: Boolean,
+          notify: true
+        }
+      },
+
+      ready: function() {
+        this._showExtrasList = false;
+        this._showNewExtraInput = false;
+        this.loading = false;
+        this._extras = [];
+      },
+
+      showExtrasList: function(show) {
+        this._showExtrasList = show;
+      },
+
+      showNewExtraInput: function(show) {
+        this._showNewExtraInput = show;
+      },
+
+      setExtras : function(extras) {
+        this._extras = extras;
+      },
+
+      _onCreateExtraSet: function(event) {
+        this.fire("extra-set-create", event.detail);
+      },
+
+      _onNewExtraTapped: function(event) {
+        this.$.extraInput.clear();
+        this._showNewExtraInput = true;
+      },
+
+      _onCreateExtra: function(event) {
+        this.fire("extra-create", event.detail);
+      },
+
+      _onEditExtra: function(event) {
+        this.fire('edit-extra', event);
+      },
+
+      _onDeleteExtra: function(event) {
+        this.fire("extra-set-delete", event.detail);
+      },
+
+      _onCancelNewExtra: function(event) {
+        this.$.extraInput.clear();
+        this._showNewExtraInput = false;
+      }
+    });
+  </script>
+</dom-module>

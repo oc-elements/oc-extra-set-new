@@ -1,0 +1,20 @@
+{
+  "name": "oc-extra-set-new",
+  "description": "Element for capturing a new extra set",
+  "main": "oc-extra-set-new.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0",
+    "paper-button": "PolymerElements/paper-button#^1.0.12",
+    "paper-material": "PolymerElements/paper-material#^1.0.6",
+    "iron-collapse": "PolymerElements/iron-collapse#^1.2.0",
+    "oc-extra-set-input": "git://github.com/oc-elements/oc-extra-set-input#1.x",
+    "oc-extra-input": "git://github.com/oc-elements/oc-extra-input#1.x",
+    "oc-extras-list": "git://github.com/oc-elements/oc-extras-list#1.x"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  }
+}
