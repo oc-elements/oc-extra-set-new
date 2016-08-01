@@ -83,7 +83,7 @@ Element for capturing a new extra set
       },
 
       _onCreateExtraSet: function(event) {
-        this.fire("extra-set-create", event.detail);
+        this.fire("create-extra-set", event.detail);
       },
 
       _onNewExtraTapped: function(event) {
@@ -92,7 +92,7 @@ Element for capturing a new extra set
       },
 
       _onCreateExtra: function(event) {
-        this.fire("extra-create", event.detail);
+        this.fire("create-extra", event.detail);
       },
 
       _onEditExtra: function(event) {
@@ -100,7 +100,7 @@ Element for capturing a new extra set
       },
 
       _onDeleteExtra: function(event) {
-        this.fire("extra-set-delete", event.detail);
+        this.fire("delete-extra", event.detail);
       },
 
       _onCancelNewExtra: function(event) {
